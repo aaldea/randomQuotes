@@ -1,13 +1,6 @@
 var quote = document.getElementById('quote');
 var click = document.getElementById('click');
-
-
-
-// random quote function that generates the random quotes
-var randomQuote = function(){
-  var twitter = document.getElementById('twitter');
-  var re = /\s/g; //regular expression to find all white space
-  var x = ["'Eating green eggs will greatly improve your chances to become a donkey with magical powers.'", 
+var quoteList = ["'Eating green eggs will greatly improve your chances to become a donkey with magical powers.'", 
   "'Always remember to brush your teeth at least 10 times a day, if you want your teeth to glow in the dark.'", 
   "'Dying your hair purple will guarantee you that great promotion at work.'", 
   "'Giraffes have such long eyelashes, it's no wonder they are good with mascaras.'", 
@@ -24,15 +17,18 @@ var randomQuote = function(){
   "'If you want free groceries, spoon feed your fridge Nachos.'",
   "'A computer mouse is a better pet than a real mouse.'"];
 
-  
-  var index = Math.floor(Math.random()*x.length);
+
+// random quote function that generates the random quotes
+var randomQuote = function(){
+  var twitter = document.getElementById('twitter');
+  var index = Math.floor(Math.random()*quoteList.length);
   // for the twitter link for that particular quote
-  // for the link, to encode the url, replace all white space and replace it with %20
-  twitter.href = "https://twitter.com/intent/tweet?text=" + x[index].replace(re, '%20');
+  // for the link, to encode the url, use encodeURI
+  twitter.href = "https://twitter.com/intent/tweet?text=" + encodeURI(quoteList[index]);
   
   //for every click, add that generated quote into the html
-  quote.innerHTML = x[index];
-}
+  quote.innerHTML = quoteList[index];
+};
 
 randomQuote(); // when page loads, run the function so the page is not blank
 
